@@ -13,11 +13,20 @@ function get_mouse_position(c, e) {
     };
 }
 
+let isMouseDown = false;
+// 도전과제2
 //Add event lisnter
 c.addEventListener("mousemove", function(e) {
     var mousePos = get_mouse_position(c,e);
     circleData.center.x = mousePos.x;
     circleData.center.y = mousePos.y;
+    for (i = 0; i <= 750; i += 10) {
+        for (j = 0; j <= 750; j += 10) {
+            let pt = new THREE.Vector2(i, j);
+            if (is_pt_inside_circle(pt, circleData))
+                redSet.add(pt.x.toString()+','+pt.y.toString());
+        }
+    }
 })
 c.addEventListener("click", function(e) {
     var mousePos = get_mouse_position(c,e);
@@ -30,13 +39,29 @@ c.addEventListener("click", function(e) {
         }
     }
 })
+//도전 과제1
 c.addEventListener("wheel", function (e) {
     if (e.deltaY > 0) {
       circleData.radius += 1;
     } else {
+        if(circleData.radius > 0)
       circleData.radius -= 1;
     }
   });
+
+c.addEventListener("mousedown", function(e) {
+    isMouseDown = true;
+    var mousePos = get_mouse_position(c, e);
+    if (is_pt_inside_circle(mousePos, circleData)) {
+        redSet.add(mousePos.x.toString() + ',' + mousePos.y.toString());
+        draw_sample_point();
+    }
+});
+
+c.addEventListener("mouseup", function(e) {
+    isDrawing = false;
+    redSet.clear();
+});
 
 //Draw Funcitons
 function clear() {
@@ -64,11 +89,18 @@ function draw_sample_point() {
             let pt = new THREE.Vector2(i, j);
             let color = '';
             let size = 0;
-
-            if (is_pt_inside_circle(pt, circleData) || redSet.has(pt.x.toString()+','+pt.y.toString())) {
-                color = "#ff0000";
+            
+            //기본 과제
+            if(pt.x%20 == 0 && is_pt_inside_circle(pt, circleData))  {
+                color = "#00ff00";
                 size = 2;
             }
+            else if (is_pt_inside_circle(pt, circleData) || redSet.has(pt.x.toString()+','+pt.y.toString())) {
+                color = "#ff0000"; 
+                size = 2;
+                
+            }
+            
             else{
                 color = 'black';
                 size = 1;
