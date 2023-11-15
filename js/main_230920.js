@@ -5,21 +5,26 @@ let yValue = 200;
 
 let boxPts = [];
 
+
 boxPts.push(new THREE.Vector2(150, 150));
 boxPts.push(new THREE.Vector2(350, 350));
 
 boxPts.push(new THREE.Vector2(xValue, yValue));
 boxPts.push(new THREE.Vector2(xValue + 50, yValue + 50));
 
+
 function draw_box(minPt, maxPt, isFill) {
     ctx.beginPath();
     ctx.rect(minPt.x, minPt.y, maxPt.x - minPt.x, maxPt.y - minPt.y);
+
     if (isFill)
         ctx.fill();
     else
         ctx.stroke();
 }
 
+//circle center(x,y), rad
+//arc 호 그리는 함수 각도가 필요함 360도=2xPI
 function draw_circle(ctr, rad, isFill) {
     ctx.beginPath();
     ctx.arc(ctr.x, ctr.y, rad,0, 2 * Math.PI);
@@ -30,12 +35,14 @@ function draw_circle(ctr, rad, isFill) {
 }
 
 function draw_image() {
-    let isFill = false;
+    let isFill = false; //충돌하는지 안 하는지
     if (box_box_collision(boxPts[0], boxPts[1], boxPts[2], boxPts[3]))
         isFill = true;
-    ctx.strokeStyle = "green";
-    ctx.fillStyle = "green"
+
+    ctx.strokeStyle = "green";  //선
+    ctx.fillStyle = "green"     //도형 내부
     draw_box(boxPts[0], boxPts[1], isFill)
+
     ctx.strokeStyle = "red"
     ctx.fillStyle = "red"
     draw_box(boxPts[2], boxPts[3], isFill)
@@ -47,9 +54,37 @@ function draw_image() {
     // draw_circle(circleCtr,50,false);
 }
 
+function draw_challenge() {
+    let isFill = false; //충돌하는지 안 하는지
+    let radius = 50; 
+    ctx.strokeStyle = "red"
+    ctx.fillStyle = "red"
+    draw_box(boxPts[2], boxPts[3], isFill)
+
+    ctx.strokeStyle = "blue"
+    ctx.fillStyle = "blue"
+    circleCtr = new THREE.Vector2(250,250);
+    draw_circle(circleCtr,radius,false);
+
+    if (circle_box_collision(circleCtr.x, circleCtr.y, radius, boxPts[2], boxPts[3]))
+        isFill = true;
+}
 function box_box_collision(pMin, pMax, qMin, qMax) {
     if (
-        false//Need to write..
+        pMin.x < qMax.x && pMax.x > qMin.x && pMin.y < qMax.y && pMax.y > qMin.y
+      ) 
+        return true;
+    return false
+}
+
+function circle_box_collision(cirx, ciry, r, qMin, qMax) {
+    if (
+        //점과 점 사이의 거리
+        x = 
+        //거리
+        let d = 
+        //반지름과 거리에 관계
+        r < d
       ) 
         return true;
     return false
@@ -79,8 +114,10 @@ function clear() {
 }
 function update() {
     clear();
-    draw_image();
+    //draw_image();
+    draw_challenge();
     requestAnimationFrame(update);
+    
 }
 update();
-document.addEventListener('keydown', keyDown);
+document.addEventListener('keydown', keyDown);  //keyboard INPUT event action
