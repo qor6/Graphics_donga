@@ -15,13 +15,14 @@ function draw_line(p0, p1) {
     ctx.lineTo(p1.x, p1.y);
     ctx.stroke();
 }
-
+//p0~p1까지(Move: 붓을 들고 이동, line: 라인을 그렸다)
 function draw_point(p) {
     ctx.beginPath();
     ctx.arc(p.x, p.y, 5, 0, 2 * Math.PI);
     ctx.fill();
 }
-
+//가장 작은 단위 : 픽셀(2D), Volume + pixel = voxel(3D)
+//점: 하나의 픽셀?x, HCI 사람이 인지할수 있는 크기로 arc원을 그림. 반지름 5픽셀
 function draw_image()
 {
     ctx.strokeStyle = "blue";
@@ -54,6 +55,9 @@ function line_line_intersection(p0, p1, p2, p3) {
 
     let intersectionPt = new THREE.Vector2(intersectionX, intersectionY);
     draw_point(intersectionPt);
+    //     //선분이 축과 평행한 경우(기울기 값이 0이 되서), 교차점이 선분 밖에서 표시
+    // if(a0!=0 || a1!=0)
+    // draw_point(intersectionPt);
 }
 
 //Keyboard Input
