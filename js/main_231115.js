@@ -74,6 +74,7 @@ function initGeometry() {
 }
 
 // // 기본 과제4
+// // https://people.sc.fsu.edu/~jburkardt/data/obj/obj.html
 // function initGeometry() {
 //     const axesHelper = new THREE.AxesHelper(); //x:red y:green z:blue 
 //     scene.add(axesHelper);
