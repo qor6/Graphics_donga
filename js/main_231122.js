@@ -173,15 +173,15 @@ function initGUI() {
     pointFolderR.add(pointLightR.position, 'x', -10, 10);
     pointFolderR.add(pointLightR.position, 'y', -10, 10);
     pointFolderR.add(pointLightR.position, 'z', -10, 10);
-    pointFolderR.add(pointLightR, 'distance', 0, 100); 
-    pointFolderR.add(pointLightR, 'decay', 0, 10);
+    // pointFolderR.add(pointLightR, 'distance', 0, 100); 
+    // pointFolderR.add(pointLightR, 'decay', 0, 10);
 
     const pointFolderG = gui.addFolder('PointLightG')
     pointFolderG.add(pointLightG.position, 'x', -10, 10);
     pointFolderG.add(pointLightG.position, 'y', -10, 10);
     pointFolderG.add(pointLightG.position, 'z', -10, 10);
-    pointFolderG.add(pointLightG, 'distance', 0, 100); 
-    pointFolderG.add(pointLightG, 'decay', 0, 10);
+    // pointFolderG.add(pointLightG, 'distance', 0, 100); 
+    // pointFolderG.add(pointLightG, 'decay', 0, 10);
 
     const pointFolderB = gui.addFolder('PointLightB')
     pointFolderB.add(pointLightB.position, 'x', -10, 10);
