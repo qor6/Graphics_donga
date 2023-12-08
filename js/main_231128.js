@@ -7,7 +7,7 @@ import * as CANNON from 'cannon-es'
 import CannonUtils from 'CannonUtils'
 import CannonDebugRenderer from 'CannonDebugRenderer'
 
-const scene = new THREE.Scene();
+const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(75, 750 / 750, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer();
 const controls = new OrbitControls(camera, renderer.domElement);
